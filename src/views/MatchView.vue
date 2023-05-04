@@ -3,6 +3,9 @@ import { getMatch } from '@/store'
 import { reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import DateView from '@/components/DateView.vue'
+import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
+import { saveAs } from "file-saver";
+
 const route = useRoute()
 
 const id = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id
@@ -10,9 +13,16 @@ const id = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id
 const state = reactive({
   match: getMatch(id)
 })
+
+function download() {
+  const node = document.querySelector(".match") as HTMLElement;
+  toBlob(node).then(function (blob) {
+     saveAs(blob, 'my-node.png');
+  });
+}
 </script>
 <template>
-  <div class="match">
+  <div class="match" @click="download()">
     <table>
       <tr class="date">
         <td colspan="5"><DateView :time="state.match.time" /></td>
@@ -57,7 +67,7 @@ const state = reactive({
   flex-direction: column;
   align-items: center;
 
-  width: 90vw;
+  width: 100vw;
   background: #000;
   padding: 1em;
   background: url('/grass.avif') no-repeat center center;
@@ -68,7 +78,7 @@ table {
   color: #fff;
   background: rgba(0, 0, 0, 0.6);
   height: 100%;
-  min-height: 40vw;
+  min-height: 50vw;
 }
 tr.teams {
   font-size: 5vw;
