@@ -3,8 +3,8 @@ import { getMatch } from '@/store'
 import { reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import DateView from '@/components/DateView.vue'
-import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
-import { saveAs } from "file-saver";
+import { toBlob } from 'html-to-image'
+import { saveAs } from 'file-saver'
 
 const route = useRoute()
 
@@ -15,10 +15,11 @@ const state = reactive({
 })
 
 function download() {
-  const node = document.querySelector(".match") as HTMLElement;
+  const node = document.querySelector('.match') as HTMLElement
   toBlob(node).then(function (blob) {
-     saveAs(blob, 'my-node.png');
-  });
+    if (!blob) return alert("error");
+    saveAs(blob, 'my-node.png')
+  })
 }
 </script>
 <template>
