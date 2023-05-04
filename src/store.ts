@@ -32,7 +32,9 @@ export function newMatch(): Match {
     awayCorners: 0,
     homeCorners: 0,
     awayShots: 0,
-    homeShots: 0
+    homeShots: 0,
+    awayFouls: 0,
+    homeFouls: 0
   }
   saveMatch(match)
   return match

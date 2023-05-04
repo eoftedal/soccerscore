@@ -5,8 +5,9 @@ const props = defineProps<{
   modelValue: number | undefined
 }>();
 const emit = defineEmits<{
-  'update:modelValue': (value: number) => void
+  (e: 'update:modelValue', value: number): void
 }>();
+
 const state = reactive({
   value: props.modelValue ?? 0
 })
