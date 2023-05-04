@@ -19,6 +19,9 @@ const state = reactive({
       <tr class="date">
         <td colspan="5"><DateView :time="state.match.time"/></td>
       </tr>
+      <tr class="arena">
+        <td colspan="5">{{ state.match.arena }}</td>
+      </tr>
       <tr class="teams">
         <td>{{ state.match.home }}</td>
         <td>{{ state.match.homeScore }}</td>
@@ -84,13 +87,16 @@ td:nth-child(3) {
   width: 5vw;
   text-align: center;
 }
-tr.date td {
+tr.date td, tr.arena td {
   text-align: center;
   font-weight: bold;
+  height: 3em;
 }
-tr.date {
-  height: 15vh;
+tr.arena td {
+  height: 1em;
+  font-weight: normal;
 }
+
 td:nth-child(1),
 td:nth-child(5) {
   width: 40%;

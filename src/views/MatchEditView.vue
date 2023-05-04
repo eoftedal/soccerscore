@@ -27,20 +27,6 @@ function view() {
   router.push({ name: 'view', params: { id: state.match.id } })
 }
 
-function incHome() {
-  state.match.homeScore++;
-}
-function decHome() {
-  state.match.homeScore--;
-  if (state.match.homeScore < 0) state.match.homeScore = 0;
-}
-function incAway() {
-  state.match.awayScore++;
-}
-function decAway() {
-  state.match.awayScore--;
-  if (state.match.awayScore < 0) state.match.awayScore = 0;
-}
 
 </script>
 <template>
@@ -52,6 +38,10 @@ function decAway() {
     <div>
       <label for="date">Tid:</label>
       <input type="text" v-model="state.time" @change="setDate()" />
+    </div>
+    <div>
+      <label for="arena">Arena:</label>
+      <input type="text" v-model="state.match.arena" />
     </div>
     <table>
       <tr><td>

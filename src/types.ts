@@ -2,6 +2,7 @@ export type Match = {
   id: string
   home: string
   away: string
+  arena: string
   homeScore: number
   homeCorners: number
   homeShots: number
