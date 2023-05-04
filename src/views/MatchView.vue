@@ -61,8 +61,7 @@ const state = reactive({
   flex-direction: column;
   align-items: center;
   
-  height: 100vh;
-  width: 100vw;
+  width: 90vw;
   background: #000;
   padding: 1em;
   background: url('/grass.avif') no-repeat center center;
@@ -73,6 +72,7 @@ table {
   color: #fff;
   background: rgba(0,0,0,0.6);
   height: 100%;
+  min-height: 40vw;
 }
 tr.teams {
   font-size: 5vw;
