@@ -8,7 +8,7 @@ export function getIndex(): string[] {
 
 export function getMatch(id: string): Match {
   const match = localStorage.getItem(id)
-  if (!match) throw new Error("No such match");
+  if (!match) throw new Error('No such match')
   return JSON.parse(match) as Match
 }
 
@@ -24,7 +24,7 @@ export function saveMatch(match: Match) {
 export function newMatch(): Match {
   const match = {
     id: Date.now().toString(),
-    arena: "Nadderud",
+    arena: 'Nadderud',
     home: 'Stabæk',
     away: 'Bortelag',
     homeScore: 0,

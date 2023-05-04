@@ -12,7 +12,7 @@ export type Match = {
   awayShots: number
   awayFouls: number
   time: number
-  showCorners?: boolean;
-  showShots?: boolean;
-  showFouls?: boolean;
+  showCorners?: boolean
+  showShots?: boolean
+  showFouls?: boolean
 }

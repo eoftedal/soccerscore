@@ -1,23 +1,21 @@
 <script setup lang="ts">
-import { getMatch } from "@/store";
-import { reactive } from "vue";
-import { useRoute } from "vue-router";
-import DateView
- from "@/components/DateView.vue";
-const route = useRoute();
+import { getMatch } from '@/store'
+import { reactive } from 'vue'
+import { useRoute } from 'vue-router'
+import DateView from '@/components/DateView.vue'
+const route = useRoute()
 
-const id = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id;
+const id = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id
 
 const state = reactive({
   match: getMatch(id)
 })
-
 </script>
 <template>
   <div class="match">
     <table>
       <tr class="date">
-        <td colspan="5"><DateView :time="state.match.time"/></td>
+        <td colspan="5"><DateView :time="state.match.time" /></td>
       </tr>
       <tr class="arena">
         <td colspan="5">{{ state.match.arena }}</td>
@@ -51,8 +49,6 @@ const state = reactive({
         <td colspan="5"></td>
       </tr>
     </table>
-
-
   </div>
 </template>
 <style scoped>
@@ -60,7 +56,7 @@ const state = reactive({
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
   width: 90vw;
   background: #000;
   padding: 1em;
@@ -70,7 +66,7 @@ const state = reactive({
 table {
   width: 100%;
   color: #fff;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
   height: 100%;
   min-height: 40vw;
 }
@@ -87,7 +83,8 @@ td:nth-child(3) {
   width: 5vw;
   text-align: center;
 }
-tr.date td, tr.arena td {
+tr.date td,
+tr.arena td {
   text-align: center;
   font-weight: bold;
   height: 3em;
@@ -114,5 +111,4 @@ tr.stat {
   height: 1.5em;
   font-weight: bold;
 }
-
 </style>
