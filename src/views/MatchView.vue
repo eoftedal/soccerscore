@@ -23,7 +23,8 @@ function download() {
 }
 </script>
 <template>
-  <div class="match" @click="download()">
+  <main>
+  <div class="match">
     <table>
       <tr class="date">
         <td colspan="5"><DateView :time="state.match.time" /></td>
@@ -61,6 +62,8 @@ function download() {
       </tr>
     </table>
   </div>
+  <button @click="download()">Last ned</button>
+  </main>
 </template>
 <style scoped>
 .match {
