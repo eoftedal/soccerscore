@@ -131,7 +131,16 @@ label {
 input {
   display: block;
 }
-
+table {
+  width: 100%;
+}
+table tr td {
+  width: 50%;
+}
+input[type=number] {
+  width: 4em;
+  text-align: right
+}
 .buttonbar {
   padding-top: 1em;
 }
