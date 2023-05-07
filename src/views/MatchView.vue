@@ -3,7 +3,8 @@ import { getMatch } from '@/store'
 import { reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import DateView from '@/components/DateView.vue'
-import { toBlob } from 'html-to-image'
+import { toPng } from 'html-to-image'
+import * as dl from 'downloadjs';
 import { saveAs } from 'file-saver'
 
 const route = useRoute()
@@ -16,10 +17,9 @@ const state = reactive({
 
 function download() {
   const node = document.querySelector('div.match') as HTMLElement
-  toBlob(node).then(function (blob) {
-    if (!blob) return alert("error");
-    saveAs(blob, 'match.png')
-  })
+  toPng(node).then(function (dataUrl) {
+    dl(dataUrl, 'matchs.png');
+  });
 }
 </script>
 <template>
@@ -72,7 +72,7 @@ function download() {
   height: 1080px;
   background: #000;
   padding: 1em;
-  background: url('/soccerscore/grass.png');;
+  background: url('/grass.png');;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
