@@ -15,22 +15,20 @@ const state = reactive({
 })
 
 function download() {
-  const node = document.querySelector('.match') as HTMLElement
+  const node = document.querySelector('div.match') as HTMLElement
   toBlob(node).then(function (blob) {
     if (!blob) return alert("error");
-    saveAs(blob, 'my-node.png')
+    saveAs(blob, 'match.png')
   })
 }
 </script>
 <template>
   <main>
+    <button @click="download()">Last ned</button>
   <div class="match">
     <table>
       <tr class="date">
-        <td colspan="5"><DateView :time="state.match.time" /></td>
-      </tr>
-      <tr class="arena">
-        <td colspan="5">{{ state.match.arena }}</td>
+        <td colspan="5"><DateView :time="state.match.time" /> - {{ state.match.arena }}</td>
       </tr>
       <tr class="teams">
         <td>{{ state.match.home }}</td>
@@ -62,7 +60,6 @@ function download() {
       </tr>
     </table>
   </div>
-  <button @click="download()">Last ned</button>
   </main>
 </template>
 <style scoped>
@@ -71,36 +68,38 @@ function download() {
   flex-direction: column;
   align-items: center;
 
-  width: 100vw;
+  width: 1920px;
+  height: 1080px;
   background: #000;
   padding: 1em;
-  background: url('/grass.avif') no-repeat center center;
+  background: url('/soccerscore/grass.png');;
+  background-repeat: no-repeat;
+  background-position: center center;
   background-size: cover;
+  font-size: 40px;
 }
 table {
   width: 100%;
   color: #fff;
   background: rgba(0, 0, 0, 0.6);
   height: 100%;
-  min-height: 50vw;
 }
 tr.teams {
-  font-size: 5vw;
+  font-size: 100px;
   font-weight: bolder;
-  height: 10vw;
+  height: 1.5em;
 }
 td:nth-child(1),
 td:nth-child(2) {
   text-align: right;
 }
 td:nth-child(3) {
-  width: 5vw;
+  width: 1.5em;
   text-align: center;
 }
 tr.date td,
 tr.arena td {
   text-align: center;
-  font-weight: bold;
   height: 3em;
 }
 tr.arena td {

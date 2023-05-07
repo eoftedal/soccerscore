@@ -26,6 +26,7 @@ function view() {
   saveMatch(state.match)
   router.push({ name: 'view', params: { id: state.match.id } })
 }
+
 </script>
 <template>
   <fieldset>
@@ -51,22 +52,22 @@ function view() {
           <div>
             <label for="date">Hjemmemål:</label>
             <input type="number" v-model="state.match.homeScore" />
-            <UpDown v-model="state.match.homeScore" />
+            <UpDown v-model="state.match.homeScore" @update:model-value="save()"/>
           </div>
           <div>
             <label for="date">Hjørnespark:</label>
             <input type="number" v-model="state.match.homeCorners" />
-            <UpDown v-model="state.match.homeCorners" />
+            <UpDown v-model="state.match.homeCorners" @update:model-value="save()"/>
           </div>
           <div>
             <label for="date">Skudd:</label>
             <input type="number" v-model="state.match.homeShots" />
-            <UpDown v-model="state.match.homeShots" />
+            <UpDown v-model="state.match.homeShots" @update:model-value="save()"/>
           </div>
           <div>
             <label for="date">Frispark:</label>
             <input type="number" v-model="state.match.homeFouls" />
-            <UpDown v-model="state.match.homeFouls" />
+            <UpDown v-model="state.match.homeFouls" @update:model-value="save()" />
           </div>
         </td>
         <td>
@@ -77,22 +78,22 @@ function view() {
           <div>
             <label for="date">Bortescore:</label>
             <input type="number" v-model="state.match.awayScore" />
-            <UpDown v-model="state.match.awayScore" />
+            <UpDown v-model="state.match.awayScore" @update:model-value="save()" />
           </div>
           <div>
             <label for="date">Hjørnespark:</label>
             <input type="number" v-model="state.match.awayCorners" />
-            <UpDown v-model="state.match.awayCorners" />
+            <UpDown v-model="state.match.awayCorners" @update:model-value="save()" />
           </div>
           <div>
             <label for="date">Skudd:</label>
             <input type="number" v-model="state.match.awayShots" />
-            <UpDown v-model="state.match.awayShots" />
+            <UpDown v-model="state.match.awayShots" @update:model-value="save()" />
           </div>
           <div>
             <label for="date">Frispark:</label>
             <input type="number" v-model="state.match.awayFouls" />
-            <UpDown v-model="state.match.awayFouls" />
+            <UpDown v-model="state.match.awayFouls" @update:model-value="save()"/>
           </div>
         </td>
       </tr>
@@ -105,7 +106,6 @@ function view() {
     <input type="checkbox" name="showFouls" v-model="state.match.showFouls" />
 
     <div class="buttonbar">
-      <button @click="save">Lagre</button>
       <button @click="view">Vis</button>
     </div>
   </fieldset>
@@ -133,4 +133,5 @@ input[type='number'] {
 .buttonbar {
   padding-top: 1em;
 }
+
 </style>

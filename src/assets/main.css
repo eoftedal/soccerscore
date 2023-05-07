@@ -1,1 +1,6 @@
 @import './base.css';
+
+button {
+  width: 20vw;
+  height: 10vw;
+}
