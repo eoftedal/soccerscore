@@ -18,7 +18,9 @@ function download() {
   const node = document.querySelector('div.match') as HTMLElement
   toPng(node).then(function (dataUrl: string) {
     dl(dataUrl, 'matchs.png');
-  });
+  }).catch(function (error) {
+    console.error('oops, something went wrong!', error);
+  });;
 }
 </script>
 <template>
