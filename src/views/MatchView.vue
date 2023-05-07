@@ -3,8 +3,8 @@ import { getMatch } from '@/store'
 import { reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import DateView from '@/components/DateView.vue'
-import { toPng } from 'html-to-image'
-import { default as dl } from 'downloadjs';
+import { toBlob } from 'html-to-image'
+import { saveAs } from 'file-saver';
 
 const route = useRoute()
 
@@ -16,11 +16,12 @@ const state = reactive({
 
 function download() {
   const node = document.querySelector('div.match') as HTMLElement
-  toPng(node).then(function (dataUrl: string) {
-    dl(dataUrl, 'matchs.png');
+  toBlob(node).then(function (blob) {
+    if (!blob) return alert("error");
+    saveAs(blob, 'match.png')
   }).catch(function (error) {
     console.error('oops, something went wrong!', error);
-  });;
+  });
 }
 </script>
 <template>
@@ -69,15 +70,15 @@ function download() {
   flex-direction: column;
   align-items: center;
 
-  width: 1920px;
-  height: 1080px;
+  width: 1280px;
+  height: 720px;
   background: #000;
   padding: 1em;
   background: url('/grass.png');;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  font-size: 40px;
+  font-size: 35px;
 }
 table {
   width: 100%;
@@ -86,26 +87,26 @@ table {
   height: 100%;
 }
 tr.teams {
-  font-size: 100px;
+  font-size: 200%;
   font-weight: bolder;
   height: 1.5em;
 }
+tr.teams :nth-child(2),
+tr.teams :nth-child(4) {
+  width: 2em;
+}
+
 td:nth-child(1),
 td:nth-child(2) {
   text-align: right;
 }
 td:nth-child(3) {
-  width: 1.5em;
+  width: 1em;
   text-align: center;
 }
-tr.date td,
-tr.arena td {
+tr.date td {
   text-align: center;
   height: 3em;
-}
-tr.arena td {
-  height: 1em;
-  font-weight: normal;
 }
 
 td:nth-child(1),
