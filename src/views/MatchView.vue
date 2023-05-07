@@ -12,24 +12,29 @@ const route = useRoute()
 const id = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id
 
 const state = reactive({
-  match: getMatch(id)
+  match: getMatch(id),
+  data: ''
 })
+
+document.body.scrollTo(0,0);
 
 function download() {
   const node = document.querySelector('div.match') as HTMLElement
-  toPng(node).then(function (dataUrl) {
+  toPng(node).then(function (dataUrl: string) {
     //if (!blob) return alert("error");
     //saveAs(blob, 'match.png')
-    dl(dataUrl, 'match.png', "image/png");
+    state.data = dataUrl;
   }).catch(function (error) {
     console.error('oops, something went wrong!', error);
   });
 }
+setTimeout(() => download(), 2000);
 </script>
 <template>
   <main>
-    <button @click="download()">Last ned</button>
-  <div class="match">
+    <div v-if="state.data ==''" class="loader">Forbereder... Vennligst vent</div>
+    <img :src="state.data" v-if="state.data != ''"/>
+  <div class="match" v-if="state.data == ''">
     <table>
       <tr class="date">
         <td colspan="5"><DateView :time="state.match.time" /> - {{ state.match.arena }}</td>
@@ -127,5 +132,11 @@ tr.stat td:nth-child(3) {
 tr.stat {
   height: 1.5em;
   font-weight: bold;
+}
+.loader {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 2em;
 }
 </style>
