@@ -4,8 +4,7 @@ import { reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import DateView from '@/components/DateView.vue'
 import { toPng } from 'html-to-image'
-import * as dl from 'downloadjs';
-import { saveAs } from 'file-saver'
+import { default as dl } from 'downloadjs';
 
 const route = useRoute()
 
@@ -17,7 +16,7 @@ const state = reactive({
 
 function download() {
   const node = document.querySelector('div.match') as HTMLElement
-  toPng(node).then(function (dataUrl) {
+  toPng(node).then(function (dataUrl: string) {
     dl(dataUrl, 'matchs.png');
   });
 }
