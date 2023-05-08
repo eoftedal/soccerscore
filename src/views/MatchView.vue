@@ -3,9 +3,7 @@ import { getMatch } from '@/store'
 import { reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import DateView from '@/components/DateView.vue'
-import { toBlob , toPng} from 'html-to-image'
-import { saveAs } from 'file-saver';
-import { default as dl } from 'downloadjs';
+import { toPng} from 'html-to-image'
 
 const route = useRoute()
 
