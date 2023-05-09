@@ -55,7 +55,7 @@ export function saveMatch(match: Match) {
 export function newMatch(): Match {
   const match = {
     id: Date.now().toString(),
-    arena: 'Nadderud',
+    arena: 'Nadderud kunstgress 2',
     home: {
       team: 'Stabæk',
       score: 0,
