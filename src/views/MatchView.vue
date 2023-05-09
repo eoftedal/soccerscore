@@ -17,6 +17,7 @@ const state = reactive({
 document.body.scrollTo(0,0);
 
 function download() {
+  state.data ='';
   const img = new Image();
   console.log("Loading image...");
   img.onload = () => {
@@ -38,7 +39,12 @@ download();
 <template>
   <main>
     <div v-if="state.data ==''" class="loader">Forbereder... Vennligst vent</div>
-    <img :src="state.data" v-if="state.data != ''"/>
+    <div v-if="state.data != ''">
+      <p>Hvis backgrunnsbildet mangler, trykk her: <button :style="{height: '2em'}" @click="download()">Prøv igjen</button>
+      </p><p>For å laste ned på iphone, trykk på bildet og hold inne til menyen kommer opp.
+      </p>
+      <img :src="state.data" />
+    </div>
   <div class="match" v-if="state.data == ''">
     <table>
       <tr class="date">
@@ -143,5 +149,8 @@ tr.stat {
   height: 100vh;
   box-sizing: border-box;
   padding: 2em;
+}
+img {
+  width: 100%;
 }
 </style>
