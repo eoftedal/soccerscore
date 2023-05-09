@@ -29,6 +29,7 @@ function download() {
         
         //if (!blob) return alert("error");
         //saveAs(blob, 'match.png')
+        if (dataUrl.length < 500000) return setTimeout(() => download(), 500);
         state.data = dataUrl;
       }).catch(function (error) {
         console.error('oops, something went wrong!', error);
@@ -43,11 +44,11 @@ download();
   <main>
     <div v-if="state.data ==''" class="loader">Forbereder... Vennligst vent</div>
     <div v-if="state.data != ''">
-      <p>Hvis backgrunnsbildet mangler, trykk her: <button :style="{height: '2em'}" @click="download()">Prøv igjen</button>
-      </p>
+      <!--p>Hvis backgrunnsbildet mangler, trykk her: <button :style="{height: '2em'}" @click="download()">Prøv igjen</button>
+      </p-->
       <p>For å laste ned på iphone, trykk på bildet og hold inne til menyen kommer opp.
       </p>
-      <p>{{ state.data.length }}</p>
+      <!--p>{{ state.data.length }}</p-->
       <img :src="state.data" />
     </div>
   <div class="match" v-if="state.data == ''">
