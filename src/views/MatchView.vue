@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getMatch } from '@/store'
-import { reactive } from 'vue'
+import { computed, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import DateView from '@/components/DateView.vue'
 import { toPng} from 'html-to-image'
@@ -11,8 +11,8 @@ const id = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id
 
 const state = reactive({
   match: getMatch(id),
-  data: ''
-})
+  data: '',
+});
 
 document.body.scrollTo(0,0);
 
@@ -21,9 +21,12 @@ function download() {
   const img = new Image();
   console.log("Loading image...");
   img.onload = () => {
+    document.body.scrollTo(0,0);
     setTimeout(() => {
+      document.body.scrollTo(0,0);
       const node = document.querySelector('div.match') as HTMLElement
       toPng(node).then(function (dataUrl: string) {
+        
         //if (!blob) return alert("error");
         //saveAs(blob, 'match.png')
         state.data = dataUrl;
@@ -41,8 +44,10 @@ download();
     <div v-if="state.data ==''" class="loader">Forbereder... Vennligst vent</div>
     <div v-if="state.data != ''">
       <p>Hvis backgrunnsbildet mangler, trykk her: <button :style="{height: '2em'}" @click="download()">Prøv igjen</button>
-      </p><p>For å laste ned på iphone, trykk på bildet og hold inne til menyen kommer opp.
       </p>
+      <p>For å laste ned på iphone, trykk på bildet og hold inne til menyen kommer opp.
+      </p>
+      <p>{{ state.data.length }}</p>
       <img :src="state.data" />
     </div>
   <div class="match" v-if="state.data == ''">
