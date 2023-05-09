@@ -17,16 +17,23 @@ const state = reactive({
 document.body.scrollTo(0,0);
 
 function download() {
-  const node = document.querySelector('div.match') as HTMLElement
-  toPng(node).then(function (dataUrl: string) {
-    //if (!blob) return alert("error");
-    //saveAs(blob, 'match.png')
-    state.data = dataUrl;
-  }).catch(function (error) {
-    console.error('oops, something went wrong!', error);
-  });
+  const img = new Image();
+  console.log("Loading image...");
+  img.onload = () => {
+    setTimeout(() => {
+      const node = document.querySelector('div.match') as HTMLElement
+      toPng(node).then(function (dataUrl: string) {
+        //if (!blob) return alert("error");
+        //saveAs(blob, 'match.png')
+        state.data = dataUrl;
+      }).catch(function (error) {
+        console.error('oops, something went wrong!', error);
+      });
+    }, 500);
+  }
+  img.src = "grass.png";
 }
-setTimeout(() => download(), 2000);
+download();
 </script>
 <template>
   <main>
@@ -38,28 +45,28 @@ setTimeout(() => download(), 2000);
         <td colspan="5"><DateView :time="state.match.time" /> - {{ state.match.arena }}</td>
       </tr>
       <tr class="teams">
-        <td>{{ state.match.home }}</td>
-        <td>{{ state.match.homeScore }}</td>
+        <td>{{ state.match.home.team }}</td>
+        <td>{{ state.match.home.score }}</td>
         <td>-</td>
-        <td>{{ state.match.awayScore }}</td>
-        <td>{{ state.match.away }}</td>
+        <td>{{ state.match.away.score }}</td>
+        <td>{{ state.match.away.team }}</td>
       </tr>
 
       <tr v-if="state.match.showShots" class="stat">
-        <td>{{ state.match.homeShots }}</td>
+        <td>{{ state.match.home.shots }}</td>
         <td colspan="3">Skudd</td>
-        <td>{{ state.match.awayShots }}</td>
+        <td>{{ state.match.away.shots }}</td>
       </tr>
 
       <tr v-if="state.match.showCorners" class="stat">
-        <td>{{ state.match.homeCorners }}</td>
+        <td>{{ state.match.home.corners }}</td>
         <td colspan="3">Hjørnespark</td>
-        <td>{{ state.match.awayCorners }}</td>
+        <td>{{ state.match.away.corners }}</td>
       </tr>
       <tr v-if="state.match.showFouls" class="stat">
-        <td>{{ state.match.homeFouls }}</td>
+        <td>{{ state.match.home.fouls }}</td>
         <td colspan="3">Frispark</td>
-        <td>{{ state.match.awayFouls }}</td>
+        <td>{{ state.match.away.fouls }}</td>
       </tr>
 
       <tr class="filler">

@@ -1,18 +1,18 @@
 export type Match = {
   id: string
-  home: string
-  away: string
+  home: TeamStat
+  away: TeamStat
   arena: string
-  homeScore: number
-  homeCorners: number
-  homeShots: number
-  homeFouls: number
-  awayScore: number
-  awayCorners: number
-  awayShots: number
-  awayFouls: number
   time: number
   showCorners?: boolean
   showShots?: boolean
   showFouls?: boolean
+}
+
+export type TeamStat = {
+  team: string
+  score: number
+  corners: number
+  shots: number
+  fouls: number
 }

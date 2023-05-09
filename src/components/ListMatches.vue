@@ -33,7 +33,7 @@ function addMatch() {
     <ul>
       <li v-for="match in sorted" :key="match.id">
         <router-link :to="{ name: 'edit', params: { id: match.id } }">
-          <DateView :time="match.time" /> {{ match.home }} - {{ match.away }}
+          <DateView :time="match.time" /> {{ match.home.team }} - {{ match.away.team }}
         </router-link>
       </li>
     </ul>

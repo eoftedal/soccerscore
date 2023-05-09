@@ -1,42 +1,77 @@
-import type { Match } from './types'
+import type { Match, TeamStat } from './types';
 
 export function getIndex(): string[] {
-  const index = localStorage.getItem('index')
-  if (index) return JSON.parse(index) as string[]
-  return []
+  const index = localStorage.getItem('index');
+  if (index) return JSON.parse(index) as string[];
+  return [];
 }
 
 export function getMatch(id: string): Match {
-  const match = localStorage.getItem(id)
-  if (!match) throw new Error('No such match')
-  return JSON.parse(match) as Match
+  const match = localStorage.getItem(id);
+  if (!match) throw new Error('No such match');
+  const r = JSON.parse(match);
+  if (typeof r.home == 'string') {
+    const h: TeamStat = {
+      team: r.home,
+      score: r.homeScore,
+      corners: r.homeCorners,
+      shots: r.homeShots,
+      fouls: r.homeFouls
+    };
+    const a: TeamStat = {
+      team: r.away,
+      score: r.awayScore,
+      corners: r.awayCorners,
+      shots: r.awayShots,
+      fouls: r.awayFouls
+    };
+    r.home = h;
+    r.away = a;
+    const nm: Match = {
+      id: r.id,
+      home: h,
+      away: a,
+      arena: r.arena,
+      time: r.time,
+      showCorners: r.showCorners,
+      showShots: r.showShots,
+      showFouls: r.showFouls
+    };
+    saveMatch(nm);
+    return nm;
+  }
+  return r as Match;
 }
 
 export function saveMatch(match: Match) {
-  const index = getIndex()
+  const index = getIndex();
   if (!index.includes(match.id)) {
-    index.push(match.id)
-    localStorage.setItem('index', JSON.stringify(index))
+    index.push(match.id);
+    localStorage.setItem('index', JSON.stringify(index));
   }
-  localStorage.setItem(match.id, JSON.stringify(match))
+  localStorage.setItem(match.id, JSON.stringify(match));
 }
 
 export function newMatch(): Match {
   const match = {
     id: Date.now().toString(),
     arena: 'Nadderud',
-    home: 'Stabæk',
-    away: 'Bortelag',
-    homeScore: 0,
-    awayScore: 0,
-    time: Date.now(),
-    awayCorners: 0,
-    homeCorners: 0,
-    awayShots: 0,
-    homeShots: 0,
-    awayFouls: 0,
-    homeFouls: 0
-  }
-  saveMatch(match)
-  return match
+    home: {
+      team: 'Stabæk',
+      score: 0,
+      corners: 0,
+      shots: 0,
+      fouls: 0
+    },
+    away: {
+      team: 'Bortelag',
+      score: 0,
+      corners: 0,
+      shots: 0,
+      fouls: 0
+    },
+    time: Date.now()
+  };
+  saveMatch(match);
+  return match;
 }
