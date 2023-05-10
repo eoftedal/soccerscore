@@ -23,8 +23,8 @@ function dec() {
 </script>
 <template>
   <main>
-    <button class="score" @click="inc()">+</button>
     <button class="score" @click="dec()">-</button>
+    <button class="score" @click="inc()">+</button>
   </main>
 </template>
 <style scoped>

@@ -80,6 +80,11 @@ download();
         <td colspan="3">Frispark</td>
         <td>{{ state.match.away.fouls }}</td>
       </tr>
+      <tr v-if="state.match.showPenalties" class="stat">
+        <td>{{ state.match.home.penalties }}</td>
+        <td colspan="3">Straffe</td>
+        <td>{{ state.match.away.penalties }}</td>
+      </tr>
 
       <tr class="filler">
         <td colspan="5"></td>

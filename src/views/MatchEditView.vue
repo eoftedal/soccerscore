@@ -69,6 +69,11 @@ function view() {
             <input type="number" v-model="state.match.home.fouls" />
             <UpDown v-model="state.match.home.fouls" @update:model-value="save()" />
           </div>
+          <div>
+            <label for="date">Straffer:</label>
+            <input type="number" v-model="state.match.home.penalties" />
+            <UpDown v-model="state.match.home.penalties" @update:model-value="save()" />
+          </div>
         </td>
         <td>
           <div>
@@ -95,6 +100,11 @@ function view() {
             <input type="number" v-model="state.match.away.fouls" />
             <UpDown v-model="state.match.away.fouls" @update:model-value="save()"/>
           </div>
+          <div>
+            <label for="date">Straffer:</label>
+            <input type="number" v-model="state.match.away.penalties" />
+            <UpDown v-model="state.match.away.penalties" @update:model-value="save()"/>
+          </div>
         </td>
       </tr>
     </table>
@@ -104,6 +114,8 @@ function view() {
     <input type="checkbox" name="showCorners" v-model="state.match.showCorners" />
     <label for="showFouls">Vis frispark</label>
     <input type="checkbox" name="showFouls" v-model="state.match.showFouls" />
+    <label for="showPenalties">Vis straffer</label>
+    <input type="checkbox" name="showPenalties" v-model="state.match.showPenalties" />
 
     <div class="buttonbar">
       <button @click="view">Vis</button>

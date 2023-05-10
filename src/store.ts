@@ -16,14 +16,16 @@ export function getMatch(id: string): Match {
       score: r.homeScore,
       corners: r.homeCorners,
       shots: r.homeShots,
-      fouls: r.homeFouls
+      fouls: r.homeFouls,
+      penalties: 0
     };
     const a: TeamStat = {
       team: r.away,
       score: r.awayScore,
       corners: r.awayCorners,
       shots: r.awayShots,
-      fouls: r.awayFouls
+      fouls: r.awayFouls,
+      penalties: 0
     };
     r.home = h;
     r.away = a;
@@ -61,14 +63,16 @@ export function newMatch(): Match {
       score: 0,
       corners: 0,
       shots: 0,
-      fouls: 0
+      fouls: 0,
+      penalties: 0
     },
     away: {
       team: 'Bortelag',
       score: 0,
       corners: 0,
       shots: 0,
-      fouls: 0
+      fouls: 0,
+      penalties: 0
     },
     time: Date.now()
   };
