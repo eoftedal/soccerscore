@@ -119,6 +119,7 @@ function view() {
 
     <div class="buttonbar">
       <button @click="view">Vis</button>
+      <button @click="save">Lagre</button>
     </div>
   </fieldset>
 </template>
