@@ -147,4 +147,7 @@ input[type='number'] {
   padding-top: 1em;
 }
 
+label {
+  font-weight: bold;
+}
 </style>
