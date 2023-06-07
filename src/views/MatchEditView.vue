@@ -17,16 +17,20 @@ const state = reactive({
 })
 
 function setDate() {
-  state.match.time = new Date(state.date + 'T' + state.time + ':00.000Z').getTime()
+  state.match.time = new Date(state.date + 'T' + state.time + ':00.000Z').getTime();
+  save();
 }
 function save() {
+  console.log("Saving...");
   saveMatch(state.match)
+  console.log("Saved");
 }
 function view() {
-  saveMatch(state.match)
+  save();
   router.push({ name: 'view', params: { id: state.match.id } })
 }
-
+const hours = new Array(24).fill(0).map((_, i) => i);
+const minutes = new Array(12).fill(0).map((_,i) => i * 5);
 </script>
 <template>
   <fieldset>
@@ -36,92 +40,92 @@ function view() {
     </div>
     <div>
       <label for="date">Tid:</label>
-      <input type="text" v-model="state.time" @change="setDate()" />
+      <input type="text" v-model="state.time" @change="setDate()" style="width: 4em;"/>
     </div>
     <div>
       <label for="arena">Arena:</label>
-      <input type="text" v-model="state.match.arena" />
+      <input type="text" v-model="state.match.arena" @change="save()" />
     </div>
     <table>
       <tr>
         <td>
           <div>
             <label for="date">Hjemmelag:</label>
-            <input type="text" v-model="state.match.home.team" />
+            <input type="text" v-model="state.match.home.team" @change="save()"/>
           </div>
           <div>
             <label for="date">Hjemmemål:</label>
-            <input type="number" v-model="state.match.home.score" />
+            <input type="number" v-model="state.match.home.score" @change="save()" />
             <UpDown v-model="state.match.home.score" @update:model-value="save()"/>
           </div>
           <div>
             <label for="date">Hjørnespark:</label>
-            <input type="number" v-model="state.match.home.corners" />
+            <input type="number" v-model="state.match.home.corners" @change="save()" />
             <UpDown v-model="state.match.home.corners" @update:model-value="save()"/>
           </div>
           <div>
             <label for="date">Skudd:</label>
-            <input type="number" v-model="state.match.home.shots" />
+            <input type="number" v-model="state.match.home.shots" @change="save()" />
             <UpDown v-model="state.match.home.shots" @update:model-value="save()"/>
           </div>
           <div>
             <label for="date">Frispark:</label>
-            <input type="number" v-model="state.match.home.fouls" />
+            <input type="number" v-model="state.match.home.fouls" @change="save()" />
             <UpDown v-model="state.match.home.fouls" @update:model-value="save()" />
           </div>
           <div>
             <label for="date">Straffer:</label>
-            <input type="number" v-model="state.match.home.penalties" />
+            <input type="number" v-model="state.match.home.penalties" @change="save()" />
             <UpDown v-model="state.match.home.penalties" @update:model-value="save()" />
           </div>
         </td>
         <td>
           <div>
             <label for="date">Bortelag:</label>
-            <input type="text" v-model="state.match.away.team" />
+            <input type="text" v-model="state.match.away.team" @change="save()" />
           </div>
           <div>
             <label for="date">Bortescore:</label>
-            <input type="number" v-model="state.match.away.score" />
+            <input type="number" v-model="state.match.away.score" @change="save()" />
             <UpDown v-model="state.match.away.score" @update:model-value="save()" />
           </div>
           <div>
             <label for="date">Hjørnespark:</label>
-            <input type="number" v-model="state.match.away.corners" />
+            <input type="number" v-model="state.match.away.corners" @change="save()" />
             <UpDown v-model="state.match.away.corners" @update:model-value="save()" />
           </div>
           <div>
             <label for="date">Skudd:</label>
-            <input type="number" v-model="state.match.away.shots" />
+            <input type="number" v-model="state.match.away.shots" @change="save()" />
             <UpDown v-model="state.match.away.shots" @update:model-value="save()" />
           </div>
           <div>
             <label for="date">Frispark:</label>
-            <input type="number" v-model="state.match.away.fouls" />
+            <input type="number" v-model="state.match.away.fouls" @change="save()" />
             <UpDown v-model="state.match.away.fouls" @update:model-value="save()"/>
           </div>
           <div>
             <label for="date">Straffer:</label>
-            <input type="number" v-model="state.match.away.penalties" />
+            <input type="number" v-model="state.match.away.penalties" @change="save()" />
             <UpDown v-model="state.match.away.penalties" @update:model-value="save()"/>
           </div>
         </td>
       </tr>
     </table>
     <label for="showShots">Vis skudd</label>
-    <input type="checkbox" name="shotShots" v-model="state.match.showShots" />
+    <input type="checkbox" name="shotShots" v-model="state.match.showShots" @change="save()" />
     <label for="showCorners">Vis hjørnespark</label>
-    <input type="checkbox" name="showCorners" v-model="state.match.showCorners" />
+    <input type="checkbox" name="showCorners" v-model="state.match.showCorners" @change="save()" />
     <label for="showFouls">Vis frispark</label>
-    <input type="checkbox" name="showFouls" v-model="state.match.showFouls" />
+    <input type="checkbox" name="showFouls" v-model="state.match.showFouls" @change="save()" />
     <label for="showPenalties">Vis straffer</label>
-    <input type="checkbox" name="showPenalties" v-model="state.match.showPenalties" />
+    <input type="checkbox" name="showPenalties" v-model="state.match.showPenalties" @change="save()" />
 
     <div class="buttonbar">
       <button @click="view">Vis</button>
-      <button @click="save">Lagre</button>
     </div>
-
+    <label for="notes">Notater</label>
+    <textarea name="notes" v-model="state.match.notes" @change="save()"></textarea>
   </fieldset>
 </template>
 <style scoped>
@@ -150,5 +154,9 @@ input[type='number'] {
 
 label {
   font-weight: bold;
+}
+textarea {
+  width: 100%;
+  height: 5em;
 }
 </style>

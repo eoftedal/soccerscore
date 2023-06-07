@@ -8,6 +8,7 @@ export type Match = {
   showShots?: boolean;
   showFouls?: boolean;
   showPenalties?: boolean;
+  notes?: string;
 };
 
 export type TeamStat = {

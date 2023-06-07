@@ -11,3 +11,6 @@ button {
   font-weight: bold;
   margin: 1px;
 }
+button:active {
+  opacity: 0.5;
+}
