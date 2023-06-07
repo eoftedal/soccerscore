@@ -122,7 +122,7 @@ function view() {
       <button @click="save">Lagre</button>
     </div>
     <button style="width: 50%" @click="() => ($refs.video as HTMLVideoElement).play()">Hold skjermen åpen</button>
-    <video ref="video" loop src="blank.mp4" controls></video>
+    <video ref="video" loop src="/blank.mp4" controls></video>
 
   </fieldset>
 </template>
