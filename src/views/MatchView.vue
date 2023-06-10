@@ -108,23 +108,34 @@ download();
   background-position: center center;
   background-size: cover;
   font-size: 35px;
+
 }
 table {
   width: 100%;
   color: #fff;
   background: rgba(0, 0, 0, 0.6);
   height: 100%;
+  border-collapse: collapse;
 }
+
 tr.teams {
-  font-size: 200%;
+  font-size: 160%;
   font-weight: bolder;
   height: 1.5em;
+}
+tr.teams td {
+  border-bottom: 2px solid #fff;
 }
 tr.teams :nth-child(2),
 tr.teams :nth-child(4) {
   width: 2em;
 }
-
+tr.teams > td:first-child {
+  border-left: 0.5em solid transparent;
+}
+tr.teams > td:last-child {
+  border-right: 0.5em solid transparent;
+}
 td:nth-child(1),
 td:nth-child(2) {
   text-align: right;
