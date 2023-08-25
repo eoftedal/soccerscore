@@ -38,7 +38,7 @@ function download() {
   }
   img.src = "grass.png";
 }
-//download();
+download();
 </script>
 <template>
   <main>
