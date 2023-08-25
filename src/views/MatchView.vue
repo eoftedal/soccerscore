@@ -38,7 +38,7 @@ function download() {
   }
   img.src = "grass.png";
 }
-download();
+//download();
 </script>
 <template>
   <main>
@@ -54,7 +54,7 @@ download();
   <div class="match" v-if="state.data == ''">
     <table>
       <tr class="date">
-        <td colspan="5"><DateView :time="state.match.time" /> - {{ state.match.arena }}</td>
+        <td colspan="5"><DateView :time="state.match.time" /><br>{{ state.match.arena }}</td>
       </tr>
       <tr class="teams">
         <td>{{ state.match.home.team }}</td>
@@ -63,7 +63,6 @@ download();
         <td>{{ state.match.away.score }}</td>
         <td>{{ state.match.away.team }}</td>
       </tr>
-
       <tr v-if="state.match.showShots" class="stat">
         <td>{{ state.match.home.shots }}</td>
         <td colspan="3">Skudd</td>
@@ -99,15 +98,15 @@ download();
   flex-direction: column;
   align-items: center;
 
-  width: 1280px;
-  height: 720px;
+  width: 720px;
+  height: 1280px;
   background: #000;
   padding: 1em;
   background: url('/grass.png');;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  font-size: 35px;
+  font-size: 30px;
 
 }
 table {
@@ -118,13 +117,18 @@ table {
   border-collapse: collapse;
 }
 
+tr:nth-child(3) td {
+  padding-top: 1em;
+}
+
 tr.teams {
-  font-size: 160%;
+  font-size: 130%;
   font-weight: bolder;
   height: 1.5em;
 }
 tr.teams td {
   border-bottom: 2px solid #fff;
+  padding-bottom: 0.5em;
 }
 tr.teams :nth-child(2),
 tr.teams :nth-child(4) {
@@ -146,12 +150,12 @@ td:nth-child(3) {
 }
 tr.date td {
   text-align: center;
-  height: 3em;
+  height: 5em;
 }
 
 td:nth-child(1),
 td:nth-child(5) {
-  width: 40%;
+  width: 35%;
 }
 tr.stat td:nth-child(2) {
   text-align: center;
