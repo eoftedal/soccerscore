@@ -38,7 +38,7 @@ function download() {
   }
   img.src = "grass.png";
 }
-download();
+//download();
 </script>
 <template>
   <main>
@@ -151,6 +151,8 @@ td:nth-child(3) {
 tr.date td {
   text-align: center;
   height: 5em;
+  padding-top: 3em;
+  padding-bottom: 2em;
 }
 
 td:nth-child(1),
