@@ -54,19 +54,19 @@ const minutes = new Array(12).fill(0).map((_,i) => i * 5);
             <input type="text" v-model="state.match.home.team" @change="save()"/>
           </div>
           <div>
-            <label for="date">Hjemmemål:</label>
+            <label for="date">Mål:</label>
             <input type="number" v-model="state.match.home.score" @change="save()" />
             <UpDown v-model="state.match.home.score" @update:model-value="save()"/>
-          </div>
-          <div>
-            <label for="date">Hjørnespark:</label>
-            <input type="number" v-model="state.match.home.corners" @change="save()" />
-            <UpDown v-model="state.match.home.corners" @update:model-value="save()"/>
           </div>
           <div>
             <label for="date">Skudd:</label>
             <input type="number" v-model="state.match.home.shots" @change="save()" />
             <UpDown v-model="state.match.home.shots" @update:model-value="save()"/>
+          </div>
+          <div>
+            <label for="date">Hjørnespark:</label>
+            <input type="number" v-model="state.match.home.corners" @change="save()" />
+            <UpDown v-model="state.match.home.corners" @update:model-value="save()"/>
           </div>
           <div>
             <label for="date">Frispark:</label>
@@ -85,19 +85,19 @@ const minutes = new Array(12).fill(0).map((_,i) => i * 5);
             <input type="text" v-model="state.match.away.team" @change="save()" />
           </div>
           <div>
-            <label for="date">Bortescore:</label>
+            <label for="date">Mål:</label>
             <input type="number" v-model="state.match.away.score" @change="save()" />
             <UpDown v-model="state.match.away.score" @update:model-value="save()" />
-          </div>
-          <div>
-            <label for="date">Hjørnespark:</label>
-            <input type="number" v-model="state.match.away.corners" @change="save()" />
-            <UpDown v-model="state.match.away.corners" @update:model-value="save()" />
           </div>
           <div>
             <label for="date">Skudd:</label>
             <input type="number" v-model="state.match.away.shots" @change="save()" />
             <UpDown v-model="state.match.away.shots" @update:model-value="save()" />
+          </div>
+          <div>
+            <label for="date">Hjørnespark:</label>
+            <input type="number" v-model="state.match.away.corners" @change="save()" />
+            <UpDown v-model="state.match.away.corners" @update:model-value="save()" />
           </div>
           <div>
             <label for="date">Frispark:</label>
@@ -124,7 +124,7 @@ const minutes = new Array(12).fill(0).map((_,i) => i * 5);
     <div class="buttonbar">
       <button @click="view">Vis</button>
     </div>
-    <label for="notes">Notater</label>
+    <label for="notes">Notater (hvem scora osv.)</label>
     <textarea name="notes" v-model="state.match.notes" @change="save()"></textarea>
   </fieldset>
 </template>
@@ -158,5 +158,6 @@ label {
 textarea {
   width: 100%;
   height: 5em;
+  margin-bottom: 5em;
 }
 </style>
