@@ -8,6 +8,8 @@ export type Match = {
   showShots?: boolean;
   showFouls?: boolean;
   showPenalties?: boolean;
+  showYellowCards?: boolean;
+  showRedCards?: boolean;
   notes?: string;
 };
 
@@ -18,4 +20,6 @@ export type TeamStat = {
   shots: number;
   fouls: number;
   penalties: number;
+  redCards: number;
+  yellowCards: number;
 };

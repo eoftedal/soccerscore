@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getMatch } from '@/store'
-import { computed, reactive } from 'vue'
+import { reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import DateView from '@/components/DateView.vue'
 import { toPng} from 'html-to-image'
@@ -83,6 +83,16 @@ download();
         <td>{{ state.match.home.penalties }}</td>
         <td colspan="3">Straffe</td>
         <td>{{ state.match.away.penalties }}</td>
+      </tr>
+      <tr v-if="state.match.showYellowCards" class="stat">
+        <td>{{ state.match.home.yellowCards }}</td>
+        <td colspan="3">Gule kort</td>
+        <td>{{ state.match.away.yellowCards }}</td>
+      </tr>
+      <tr v-if="state.match.showRedCards" class="stat">
+        <td>{{ state.match.home.redCards }}</td>
+        <td colspan="3">Røde kort</td>
+        <td>{{ state.match.away.redCards }}</td>
       </tr>
 
       <tr class="filler">

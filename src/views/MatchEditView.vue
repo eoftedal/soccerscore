@@ -29,8 +29,8 @@ function view() {
   save();
   router.push({ name: 'view', params: { id: state.match.id } })
 }
-const hours = new Array(24).fill(0).map((_, i) => i);
-const minutes = new Array(12).fill(0).map((_,i) => i * 5);
+//const hours = new Array(24).fill(0).map((_, i) => i);
+//const minutes = new Array(12).fill(0).map((_,i) => i * 5);
 </script>
 <template>
   <fieldset>
@@ -78,6 +78,17 @@ const minutes = new Array(12).fill(0).map((_,i) => i * 5);
             <input type="number" v-model="state.match.home.penalties" @change="save()" />
             <UpDown v-model="state.match.home.penalties" @update:model-value="save()" />
           </div>
+          <div>
+            <label for="date">Gule kort:</label>
+            <input type="number" v-model="state.match.home.yellowCards" @change="save()" />
+            <UpDown v-model="state.match.home.yellowCards" @update:model-value="save()"/>
+          </div>
+          <div>
+            <label for="date">Røde kort:</label>
+            <input type="number" v-model="state.match.home.redCards" @change="save()" />
+            <UpDown v-model="state.match.home.redCards" @update:model-value="save()"/>
+          </div>
+
         </td>
         <td>
           <div>
@@ -109,6 +120,16 @@ const minutes = new Array(12).fill(0).map((_,i) => i * 5);
             <input type="number" v-model="state.match.away.penalties" @change="save()" />
             <UpDown v-model="state.match.away.penalties" @update:model-value="save()"/>
           </div>
+          <div>
+            <label for="date">Gule kort:</label>
+            <input type="number" v-model="state.match.away.yellowCards" @change="save()" />
+            <UpDown v-model="state.match.away.yellowCards" @update:model-value="save()"/>
+          </div>
+          <div>
+            <label for="date">Røde kort:</label>
+            <input type="number" v-model="state.match.away.redCards" @change="save()" />
+            <UpDown v-model="state.match.away.redCards" @update:model-value="save()"/>
+          </div>
         </td>
       </tr>
     </table>
@@ -120,6 +141,10 @@ const minutes = new Array(12).fill(0).map((_,i) => i * 5);
     <input type="checkbox" name="showFouls" v-model="state.match.showFouls" @change="save()" />
     <label for="showPenalties">Vis straffer</label>
     <input type="checkbox" name="showPenalties" v-model="state.match.showPenalties" @change="save()" />
+    <label for="showYellowCards">Vis gule kort</label>
+    <input type="checkbox" name="showYellowCards" v-model="state.match.showYellowCards" @change="save()" />
+    <label for="showRedCards">Vis røde kort</label>
+    <input type="checkbox" name="showRedCards" v-model="state.match.showRedCards" @change="save()" />
 
     <div class="buttonbar">
       <button @click="view">Vis</button>

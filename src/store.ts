@@ -64,7 +64,9 @@ export function newMatch(): Match {
       corners: 0,
       shots: 0,
       fouls: 0,
-      penalties: 0
+      penalties: 0,
+      yellowCards: 0,
+      redCards: 0
     },
     away: {
       team: 'Bortelag',
@@ -72,7 +74,9 @@ export function newMatch(): Match {
       corners: 0,
       shots: 0,
       fouls: 0,
-      penalties: 0
+      penalties: 0,
+      yellowCards: 0,
+      redCards: 0
     },
     time: Date.now()
   };
