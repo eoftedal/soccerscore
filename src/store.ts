@@ -17,7 +17,9 @@ export function getMatch(id: string): Match {
       corners: r.homeCorners,
       shots: r.homeShots,
       fouls: r.homeFouls,
-      penalties: 0
+      penalties: 0,
+      yellowCards: 0,
+      redCards: 0
     };
     const a: TeamStat = {
       team: r.away,
@@ -25,7 +27,9 @@ export function getMatch(id: string): Match {
       corners: r.awayCorners,
       shots: r.awayShots,
       fouls: r.awayFouls,
-      penalties: 0
+      penalties: 0,
+      yellowCards: 0,
+      redCards: 0
     };
     r.home = h;
     r.away = a;
