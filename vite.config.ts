@@ -15,7 +15,9 @@ const favIconPlugin = () => {
         const resized = image.resize({ width: v, height: v });
         const base64 = (await resized.toBuffer()).toString('base64');
         links.push(
-          `<link rel="icon" type="image/webp" sizes="${v}x${v}" href="data:image/webp;base64,${base64}">`
+          `<link rel="${
+            v == 16 ? 'icon' : 'apple-touch-icon'
+          }" type="image/webp" sizes="${v}x${v}" href="data:image/webp;base64,${base64}">`
         );
       }
 
