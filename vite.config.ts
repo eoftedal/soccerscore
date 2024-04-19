@@ -2,7 +2,7 @@ import { fileURLToPath, URL } from 'node:url';
 
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import { loadImage, applyTransforms, builtins, generateTransforms } from 'vite-imagetools';
+import { loadImage } from 'vite-imagetools';
 const image = loadImage('./src/assets/soccer.webp');
 
 const versions = [16, 120, 152, 180];

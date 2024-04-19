@@ -29,11 +29,18 @@ function view() {
   save();
   router.push({ name: 'view', params: { id: state.match.id } })
 }
+function swap() {
+  const home = state.match.home;
+  state.match.home = state.match.away;
+  state.match.away = home;
+  save();
+}
 //const hours = new Array(24).fill(0).map((_, i) => i);
 //const minutes = new Array(12).fill(0).map((_,i) => i * 5);
 </script>
 <template>
   <fieldset>
+    <button @click="swap" class="small">Bytt hjemme/bortelag</button>
     <div>
       <label for="date">Dato:</label>
       <input type="text" v-model="state.date" @change="setDate()" />
@@ -151,9 +158,17 @@ function view() {
     </div>
     <label for="notes">Notater (hvem scora osv.)</label>
     <textarea name="notes" v-model="state.match.notes" @change="save()"></textarea>
+
   </fieldset>
 </template>
 <style scoped>
+button.small {
+  width: auto;
+  font-size: 100%;
+  height: auto;
+  padding: 0.5em;
+}
+
 fieldset {
   border: none;
 }

@@ -82,7 +82,13 @@ export function newMatch(): Match {
       yellowCards: 0,
       redCards: 0
     },
-    time: Date.now()
+    time: Date.now(),
+    showCorners: true,
+    showShots: true,
+    showFouls: true,
+    showPenalties: true,
+    showYellowCards: true,
+    showRedCards: true,
   };
   saveMatch(match);
   return match;
