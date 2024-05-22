@@ -17,7 +17,11 @@ const state = reactive({
   <button @pointerdown.prevent="state.hold = true" @pointerup.prevent="state.hold = false">pointerdown</button>
   <button @pointerdown="state.hold = true" @pointerup="state.hold = false">pointerdown</button>
 
-
+  <button 
+  @touchstart.prevent="state.hold = true" @touchend.prevent="state.hold = false"
+  @pointerdown.prevent="state.hold = true" @pointerup.prevent="state.hold = false"
+  >all</button>
+  
 <div>
   {{ state.hold }}
 </div>
