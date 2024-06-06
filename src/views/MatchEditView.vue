@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getMatch, saveMatch } from '@/store'
-import { reactive } from 'vue'
+import { reactive, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import UpDown from '@/components/UpDown.vue'
 
@@ -15,6 +15,19 @@ const state = reactive({
   date: new Date(match.time).toISOString().split('T')[0],
   time: new Date(match.time).toISOString().split('T')[1].split(':').slice(0, 2).join(':')
 })
+
+watch(
+  () => state.match.home.score, 
+  (to, from) => {
+    state.match.home.shots += to - from;
+  }
+)
+watch(
+  () => state.match.away.score, 
+  (to, from) => {
+    state.match.away.shots += to - from;
+  }
+)
 
 function setDate() {
   state.match.time = new Date(state.date + 'T' + state.time + ':00.000Z').getTime();
@@ -43,103 +56,128 @@ function swap() {
     <button @click="swap" class="small">Bytt hjemme/bortelag</button>
     <div>
       <label for="date">Dato:</label>
-      <input type="text" v-model="state.date" @change="setDate()" />
+      <input type="date" v-model="state.date" @change="setDate()" />
     </div>
     <div>
       <label for="date">Tid:</label>
-      <input type="text" v-model="state.time" @change="setDate()" style="width: 4em;"/>
+      <input type="time" v-model="state.time" @change="setDate()" />
     </div>
     <div>
       <label for="arena">Arena:</label>
       <input type="text" v-model="state.match.arena" @change="save()" />
     </div>
-    <table>
-      <tr>
-        <td>
+    <div class="grid">
+    <div class="column">
           <div>
             <label for="date">Hjemmelag:</label>
             <input type="text" v-model="state.match.home.team" @change="save()"/>
           </div>
           <div>
-            <label for="date">Mål:</label>
-            <input type="number" v-model="state.match.home.score" @change="save()" />
+            <div class="num">
+              <label for="date">Mål:</label>
+              <input type="number" v-model="state.match.home.score" @change="save()" />
+            </div>
             <UpDown v-model="state.match.home.score" @update:model-value="save()"/>
           </div>
           <div>
-            <label for="date">Skudd:</label>
-            <input type="number" v-model="state.match.home.shots" @change="save()" />
+            <div class="num">
+              <label for="date">Skudd:</label>
+              <input type="number" v-model="state.match.home.shots" @change="save()" />
+            </div>
             <UpDown v-model="state.match.home.shots" @update:model-value="save()"/>
           </div>
           <div>
-            <label for="date">Hjørnespark:</label>
-            <input type="number" v-model="state.match.home.corners" @change="save()" />
+            <div class="num">
+              <label for="date">Hjørnespark:</label>
+              <input type="number" v-model="state.match.home.corners" @change="save()" />
+            </div>
             <UpDown v-model="state.match.home.corners" @update:model-value="save()"/>
           </div>
           <div>
-            <label for="date">Frispark:</label>
-            <input type="number" v-model="state.match.home.fouls" @change="save()" />
+            <div class="num">
+              <label for="date">Frispark:</label>
+              <input type="number" v-model="state.match.home.fouls" @change="save()" />
+            </div>
             <UpDown v-model="state.match.home.fouls" @update:model-value="save()" />
           </div>
           <div>
-            <label for="date">Straffer:</label>
-            <input type="number" v-model="state.match.home.penalties" @change="save()" />
+            <div class="num">
+              <label for="date">Straffer:</label>
+              <input type="number" v-model="state.match.home.penalties" @change="save()" />
+            </div>
             <UpDown v-model="state.match.home.penalties" @update:model-value="save()" />
           </div>
           <div>
-            <label for="date">Gule kort:</label>
-            <input type="number" v-model="state.match.home.yellowCards" @change="save()" />
+            <div class="num">
+              <label for="date">Gule kort:</label>
+              <input type="number" v-model="state.match.home.yellowCards" @change="save()" />
+            </div>
             <UpDown v-model="state.match.home.yellowCards" @update:model-value="save()"/>
           </div>
           <div>
-            <label for="date">Røde kort:</label>
-            <input type="number" v-model="state.match.home.redCards" @change="save()" />
+            <div class="num">
+              <label for="date">Røde kort:</label>
+              <input type="number" v-model="state.match.home.redCards" @change="save()" />
+            </div>
             <UpDown v-model="state.match.home.redCards" @update:model-value="save()"/>
           </div>
-
-        </td>
-        <td>
+    </div>
+    <div class="column">
           <div>
             <label for="date">Bortelag:</label>
             <input type="text" v-model="state.match.away.team" @change="save()" />
           </div>
           <div>
-            <label for="date">Mål:</label>
-            <input type="number" v-model="state.match.away.score" @change="save()" />
+            <div class="num">
+              <label for="date">Mål:</label>
+              <input type="number" v-model="state.match.away.score" @change="save()" />
+            </div>
             <UpDown v-model="state.match.away.score" @update:model-value="save()" />
           </div>
           <div>
-            <label for="date">Skudd:</label>
-            <input type="number" v-model="state.match.away.shots" @change="save()" />
+            <div class="num">
+              <label for="date">Skudd:</label>
+              <input type="number" v-model="state.match.away.shots" @change="save()" />
+            </div>
             <UpDown v-model="state.match.away.shots" @update:model-value="save()" />
           </div>
           <div>
-            <label for="date">Hjørnespark:</label>
-            <input type="number" v-model="state.match.away.corners" @change="save()" />
+            <div class="num">
+              <label for="date">Hjørnespark:</label>
+              <input type="number" v-model="state.match.away.corners" @change="save()" />
+            </div>
             <UpDown v-model="state.match.away.corners" @update:model-value="save()" />
           </div>
           <div>
-            <label for="date">Frispark:</label>
-            <input type="number" v-model="state.match.away.fouls" @change="save()" />
+            <div class="num">
+              <label for="date">Frispark:</label>
+              <input type="number" v-model="state.match.away.fouls" @change="save()" />
+            </div>
             <UpDown v-model="state.match.away.fouls" @update:model-value="save()"/>
           </div>
           <div>
-            <label for="date">Straffer:</label>
-            <input type="number" v-model="state.match.away.penalties" @change="save()" />
+            <div class="num">
+              <label for="date">Straffer:</label>
+              <input type="number" v-model="state.match.away.penalties" @change="save()" />
+            </div>
             <UpDown v-model="state.match.away.penalties" @update:model-value="save()"/>
           </div>
           <div>
-            <label for="date">Gule kort:</label>
-            <input type="number" v-model="state.match.away.yellowCards" @change="save()" />
+            <div class="num">
+              <label for="date">Gule kort:</label>
+              <input type="number" v-model="state.match.away.yellowCards" @change="save()" />
+            </div>
             <UpDown v-model="state.match.away.yellowCards" @update:model-value="save()"/>
           </div>
           <div>
-            <label for="date">Røde kort:</label>
-            <input type="number" v-model="state.match.away.redCards" @change="save()" />
+            <div class="num">
+              <label for="date">Røde kort:</label>
+              <input type="number" v-model="state.match.away.redCards" @change="save()" />
+            </div>
             <UpDown v-model="state.match.away.redCards" @update:model-value="save()"/>
           </div>
-        </td>
-      </tr>
-    </table>
+        </div>
+    </div>
     <label for="showShots">Vis skudd</label>
     <input type="checkbox" name="shotShots" v-model="state.match.showShots" @change="save()" />
     <label for="showCorners">Vis hjørnespark</label>
@@ -167,6 +205,26 @@ button.small {
   font-size: 100%;
   height: auto;
   padding: 0.5em;
+}
+div.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+}
+div.num {
+  display: flex;
+  margin-top: 5px;
+}
+div.num label {
+  width: 100%;
+  color: #00b3ff;
+}
+div.num input {
+  font-size: 130%;
+  margin-left: 1em;
+  pointer-events:none;
+  border: 0;
+  padding-right: 2em;
 }
 
 fieldset {

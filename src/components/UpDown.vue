@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive, watch } from 'vue'
 
 const props = defineProps<{
   modelValue: number | undefined
@@ -7,6 +7,10 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: 'update:modelValue', value: number): void
 }>()
+
+watch(() => props.modelValue, (value) => {
+  if (value) state.value = value;
+});
 
 const state = reactive({
   value: props.modelValue ?? 0
@@ -22,10 +26,10 @@ function dec() {
 }
 </script>
 <template>
-  <main>
+  <div>
     <button class="score" @click="dec()">-</button>
     <button class="score" @click="inc()">+</button>
-  </main>
+  </div>
 </template>
 <style scoped>
 input {
