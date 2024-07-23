@@ -112,4 +112,7 @@ ul.export input[type="checkbox"] {
 button {
   width: auto;
 }
+h2 {
+  margin-top: 1em;
+}
 </style>
