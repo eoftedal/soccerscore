@@ -1,8 +1,9 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import MatchView from '../views/MatchView.vue'
-import MatchEditView from '../views/MatchEditView.vue'
-import TestView from '../views/TestView.vue'
+import { createRouter, createWebHashHistory } from 'vue-router';
+import HomeView from '../views/HomeView.vue';
+import MatchView from '../views/MatchView.vue';
+import MatchEditView from '../views/MatchEditView.vue';
+import TestView from '../views/TestView.vue';
+import ExportView from '../views/ExportView.vue';
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -27,8 +28,12 @@ const router = createRouter({
       name: 'test',
       component: TestView
     },
-
+    {
+      path: '/export',
+      name: 'export',
+      component: ExportView
+    }
   ]
-})
+});
 
-export default router
+export default router;

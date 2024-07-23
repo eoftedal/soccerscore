@@ -11,6 +11,12 @@ button {
   font-weight: bold;
   margin: 1px;
 }
+button.small {
+  height: 2em;
+  width: auto;
+  font-size: 1em;
+}
+
 button:active {
   opacity: 0.5;
 }
