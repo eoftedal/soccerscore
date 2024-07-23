@@ -86,7 +86,7 @@ function saveImportMatches() {
       <button v-if="importMatches.length > 0" @click="saveImportMatches()">Import</button>
     </div>
     <h2>Export matches</h2>
-    <ul class="">
+    <ul class="export">
       <li v-for="m in state.matches" v-bind:key="m.id">
         <input type="checkbox" @change="toggleSelected(m)" :checked="state.selected.has(m.id)" />
         <DateView :time="m.time" /> - {{ m.home.team }} - {{ m.away.team }}
@@ -100,5 +100,16 @@ function saveImportMatches() {
 <style scoped>
 main {
   margin: 2em;
+}
+ul.export {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+ul.export input[type="checkbox"] {
+  margin-right: 0.5em;
+}
+button {
+  width: auto;
 }
 </style>
