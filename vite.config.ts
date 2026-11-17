@@ -2,8 +2,9 @@ import { fileURLToPath, URL } from 'node:url';
 
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import { loadImage } from 'vite-imagetools';
-const image = loadImage('./src/assets/soccer.webp');
+import sharp from 'sharp';
+
+const imagePath = fileURLToPath(new URL('./src/assets/soccer.webp', import.meta.url));
 
 const versions = [16, 120, 152, 180];
 const favIconPlugin = () => {
@@ -12,8 +13,8 @@ const favIconPlugin = () => {
     async transformIndexHtml(html: string) {
       const links = [];
       for (const v of versions) {
-        const resized = image.resize({ width: v, height: v });
-        const base64 = (await resized.toBuffer()).toString('base64');
+        const resized = await sharp(imagePath).resize({ width: v, height: v }).toBuffer();
+        const base64 = resized.toString('base64');
         links.push(
           `<link rel="${
             v == 16 ? 'icon' : 'apple-touch-icon'
